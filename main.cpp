@@ -82,9 +82,18 @@ int main(int argc, char **argv) {
     Visualize::viewer().callback_post_draw = &simulate;
     Visualize::add_object_to_scene(V_cow, F_cow, Eigen::RowVector3d(244,165,130)/255.);
     Visualize::add_object_to_scene(V_spring, F_spring, Eigen::RowVector3d(200,200,200)/255.);
-    Visualize::viewer().launch();
-
-    
+    // Visualize::viewer().launch();
+    if(argc > 1) {    
+        if(argv[1] == std::string("be")) { 
+            Visualize::viewer().launch(true, false, "1D mass spring system using the Backward Euler algorithm", 2560, 1280);
+        } else if(argv[1] == std::string("se")) { 
+            Visualize::viewer().launch(true, false, "1D mass spring system using the Symplectic Euler algorithm", 2560, 1280); 
+        } else if(argv[1] == std::string("rk")) { 
+            Visualize::viewer().launch(true, false, "1D mass spring system using the 4th-order Runge-Kutta algorithm", 2560, 1280); 
+        } 
+    } else { 
+        Visualize::viewer().launch(true, false, "1D mass spring system using the Forward Euler algorithm", 2560, 1280);
+    }
     //how am I going to organize memory
     //seperate q and q Dot arrays (extra stuff to pass around) <-- this is easier to deal with 
     return 0;

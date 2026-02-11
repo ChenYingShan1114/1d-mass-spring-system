@@ -184,7 +184,7 @@ bool Visualize::plot_phase_space(const char *label, ImVec2 q_bounds, ImVec2 q_do
         {
             // Define next window position + size
             ImGui::SetNextWindowPos(ImVec2(180.f * menu.menu_scaling(), 10), ImGuiSetCond_FirstUseEver);
-            ImGui::SetNextWindowSize(ImVec2(800, 800), ImGuiSetCond_FirstUseEver);
+            ImGui::SetNextWindowSize(ImVec2(400, 400), ImGuiSetCond_FirstUseEver);
             ImGui::Begin(
                 "Phase Space Plot", nullptr,
                 ImGuiWindowFlags_NoSavedSettings

@@ -12,7 +12,15 @@
 //  qdot - set qdot to the updated generalized velocity using Backward Euler time integration
 
 template<typename FORCE, typename STIFFNESS> 
-inline void backward_euler(Eigen::VectorXd &q, Eigen::VectorXd &qdot, double dt, double mass,  FORCE &force, STIFFNESS &stiffness) {
-
-
+inline void backward_euler(Eigen::VectorXd &q, Eigen::VectorXd &qdot, double dt, double mass, FORCE &force, STIFFNESS &stiffness) {
+    Eigen::VectorXd f;
+    Eigen::MatrixXd k;
+    Eigen::VectorXd q_old, qdot_old;
+    force(f, q, qdot);
+    stiffness(k, q, qdot);
+    q_old = q;
+    qdot_old = qdot;
+    double para = 1 / (1 + dt * dt * k(0, 0) / mass);
+    q = para * (q_old + dt * qdot_old);
+    qdot = para * (- dt * k(0, 0) / mass * q_old + qdot_old);    
 }
