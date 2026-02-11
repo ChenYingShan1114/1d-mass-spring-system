@@ -74,6 +74,10 @@ routine. Starting in this directory, issue:
     cd build
     cmake ..
 
+or
+
+    CMAKE_POLICY_VERSION_MINIMUM=3.5 cmake ..
+
 If you are using Mac or Linux, then issue:
 
     make
